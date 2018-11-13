@@ -1,26 +1,30 @@
 <?php
-  class Database {
-    protected $host, $user, $password, $database, $connection;
 
-    function __construct($host, $user, $password, $database, $connection) {
-      $this->host = $host;
-      $this->user = $user;
-      $this->password = $password;
-      $this->database = $database;
-      $this->connection = $connection;
+class Database{
+  $host = "localhost";
+  $user = "root";
+  $password = "";
+  $database = "database";
 
-      mysql_connect($this->host,$this->user,$this->password, $this->database, $this->connection);
-      mysql_select_db($this->database);
-    }
+  function __construct(){
 
-    function query(sql){
-
-    }
-
-    function prepare(sql){
-
+    $conn = new mysqli($host, $user, $password);
+    if($conn->connect_error){
+      die("A conexão falhou: " . $conn->connect_error);
+    }else{
+      echo "A conexão foi estalecida com sucesso!";
     }
   }
 
+  public function OurQuery($sql){
+    $result = $conn->query($sql)
+    //code
 
- ?>
+  }
+
+  public function prepare($sql){
+    //code here
+  }
+}
+
+?>
